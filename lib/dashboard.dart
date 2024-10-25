@@ -377,12 +377,12 @@ Future<void> _selectTime(BuildContext context) async {
   }
 
 
-  Future<void> _pickImage() async {
-    final pickedFile = await ImagePicker().getImage(source: ImageSource.gallery);
-    setState(() {
-      _image = pickedFile;
-    });
-  }
+Future<void> _pickImage() async {
+  final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
+  setState(() {
+    _image = pickedFile != null ? PickedFile(pickedFile.path) : null;
+  });
+}
 Future<void> saveComplaint(String cat) async {
   print("heere");
   final url = Uri.parse('http://${globalip}/newcomplaint.php');
