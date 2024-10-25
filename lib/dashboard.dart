@@ -16,6 +16,9 @@ import 'package:date_picker_plus/date_picker_plus.dart';
 import 'package:http/http.dart' as http;
 import 'globalip.dart';
 
+import 'dart:io'; // Import for File
+import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 
 class DashboardScreen extends StatefulWidget {
@@ -377,12 +380,9 @@ Future<void> _selectTime(BuildContext context) async {
   }
 
 
-Future<void> _pickImage() async {
-  final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
-  setState(() {
-    _image = pickedFile != null ? PickedFile(pickedFile.path) : null;
-  });
-}
+
+
+
 Future<void> saveComplaint(String cat) async {
   print("heere");
   final url = Uri.parse('http://${globalip}/newcomplaint.php');
@@ -390,7 +390,7 @@ Future<void> saveComplaint(String cat) async {
      String base64Image = base64Encode(imageBytes);
  String formattedDate = _incidentDate != null ? DateFormat('yyyy-MM-dd').format(_incidentDate!) : '';
   String formattedTime = _incidentTime != null ? "${_incidentTime!.hour.toString().padLeft(2, '0')}:${_incidentTime!.minute.toString().padLeft(2, '0')}:00" : '';
-       print('userId: ${widget.userId}');
+  print('userId: ${widget.userId}');
   print('metroNo: $_selectedMetroNumber');
   print('stationNo: $_selectedStationNumber');
   print('date: $formattedDate');
@@ -739,16 +739,17 @@ Row(
           _image == null
               ? Text('No image selected.', textAlign: TextAlign.left)
               : Image.network(_image!.path, height: 50),
-          IconButton(
-            icon: Icon(Icons.add_a_photo),
-            onPressed: _pickImage,
-          ),
+          //IconButton(
+           // icon: Icon(Icons.add_a_photo),
+           // onPressed: _pickImage,
+         // ),
         ],
       ),
       SizedBox(height: 16.0),
       Text("Grievance Description", style: TextStyle(color: Colors.black), textAlign: TextAlign.left),
       TextFormField(
         maxLines: 4,
+
         onChanged: (value) {
           setState(() {
             _grievanceDescription = value;
@@ -1011,10 +1012,10 @@ Row(
           _image == null
               ? Text('No image selected.', textAlign: TextAlign.left)
               : Image.network(_image!.path, height: 50),
-          IconButton(
-            icon: Icon(Icons.add_a_photo),
-            onPressed: _pickImage,
-          ),
+         // IconButton//(
+           // icon: Icon(Icons.add_a_photo),
+           // onPressed:// _pickImage,
+         // ),
         ],
       ),
       SizedBox(height: 16.0),
