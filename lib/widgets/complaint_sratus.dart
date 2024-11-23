@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 class ExpandableItem extends StatefulWidget {
   final int userId;
 
-  ExpandableItem({required this.userId});
+  const ExpandableItem({super.key, required this.userId});
 
   @override
   _ExpandableItemState createState() => _ExpandableItemState();
@@ -45,9 +45,9 @@ class _ExpandableItemState extends State<ExpandableItem> {
 
   Widget _buildExpandedContent() {
     if (_isLoading) {
-      return Center(child: CircularProgressIndicator());
+      return const Center(child: CircularProgressIndicator());
     } else if (_complaints.isEmpty) {
-      return Text('No complaints found');
+      return const Text('No complaints found');
     } else {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -80,10 +80,10 @@ class _ExpandableItemState extends State<ExpandableItem> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(
+        SizedBox(
           width: double.infinity,
           child: ListTile(
-            title: Text('User Complaints'),
+            title: const Text('User Complaints'),
             onTap: () {
               setState(() {
                 _isExpanded = !_isExpanded;
@@ -92,7 +92,7 @@ class _ExpandableItemState extends State<ExpandableItem> {
                 fetchUserComplaints();
               }
             },
-            trailing: _isExpanded ? Icon(Icons.arrow_drop_up) : Icon(Icons.arrow_drop_down),
+            trailing: _isExpanded ? const Icon(Icons.arrow_drop_up) : const Icon(Icons.arrow_drop_down),
           ),
         ),
         if (_isExpanded) _buildExpandedContent(),

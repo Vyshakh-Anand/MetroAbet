@@ -20,14 +20,14 @@ import 'globalip.dart';
 
 class DashboardScreen extends StatefulWidget {
   final int userId;
-  const DashboardScreen({Key? key, required this.userId}) : super(key: key);
+  const DashboardScreen({super.key, required this.userId});
 
   @override
   _DashboardScreenState createState() => _DashboardScreenState();
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
-  bool _isExpanded = false;
+  final bool _isExpanded = false;
   String _name = '';
   String _phone = '';
   String _email = '';
@@ -66,7 +66,7 @@ Future<void> fetchData(String type) async {
     _isLoading = true; // Show loading indicator
   });
   try {
-    final response = await http.get(Uri.parse('http://${globalip}/fetchData.php?type=$type'));
+    final response = await http.get(Uri.parse('http://$globalip/fetchData.php?type=$type'));
 
     if (response.statusCode == 200) {
       print('Response body: ${response.body}'); // Print the response body
@@ -121,7 +121,7 @@ Future<void> fetchData(String type) async {
   });
 }
   Future<void> _fetchComplaintsList() async {
-    final response = await http.get(Uri.parse('http://${globalip}/fetch_complaintsList.php?category=metro'));
+    final response = await http.get(Uri.parse('http://$globalip/fetch_complaintsList.php?category=metro'));
 
     if (response.statusCode == 200) {
       print('Response data: ${response.body}'); // Print the response data
@@ -135,7 +135,7 @@ Future<void> fetchData(String type) async {
   }
 
   Future<void> _fetchComplaintsListStation() async {
-    final response = await http.get(Uri.parse('http://${globalip}/fetch_complaintsList.php?category=station'));
+    final response = await http.get(Uri.parse('http://$globalip/fetch_complaintsList.php?category=station'));
 
     if (response.statusCode == 200) {
       print('Response data: ${response.body}'); // Print the response data
@@ -154,15 +154,7 @@ Future<void> fetchData(String type) async {
     _isLoading = true;
   });
 
-  final response = await http.get(Uri.parse('http://${globalip}/fetch_complaints.php?userId=${widget.userId}'));
-
-  if (response.body == null) {
-    // Handle null response body
-    setState(() {
-      _isLoading = false;
-    });
-    throw Exception('Response body is null');
-  }
+  final response = await http.get(Uri.parse('http://$globalip/fetch_complaints.php?userId=${widget.userId}'));
 
   if (response.statusCode == 200) {
     final data = json.decode(response.body);
@@ -206,12 +198,12 @@ Future<void> fetchData(String type) async {
           children: [
             Container(
               width: 700,
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
-                color: Color.fromARGB(51, 168, 168, 168),
+                color: const Color.fromARGB(51, 168, 168, 168),
                 borderRadius: BorderRadius.circular(20),
                 border: Border.all(
-                  color: Color.fromARGB(124, 255, 47, 47),
+                  color: const Color.fromARGB(124, 255, 47, 47),
                   width: 2,
                 ),
               ),
@@ -223,21 +215,21 @@ Future<void> fetchData(String type) async {
                     color: color,
                     size: 50,
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Text(
                     title,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 22,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Text(
                     message,
-                    style: TextStyle(fontSize: 16),
+                    style: const TextStyle(fontSize: 16),
                     textAlign: TextAlign.center,
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
@@ -245,14 +237,14 @@ Future<void> fetchData(String type) async {
                         onPressed: () {
                           Navigator.of(context).pop();
                         },
-                        child: Text('Cancel'),
+                        child: const Text('Cancel'),
                       ),
                       TextButton(
                         onPressed: () {
                           Navigator.of(context).pop(); // Close the dialog first
                           saveComplaint(cat); // Then call the saveComplaint function
                         },
-                        child: Text('OK'),
+                        child: const Text('OK'),
                       ),
                     ],
                   ),
@@ -267,6 +259,7 @@ Future<void> fetchData(String type) async {
 }
 
 
+
 void showWarning( String title, String message, IconData icon, Color color,[Function? redirect]) {
   showDialog(
     context: context,
@@ -278,12 +271,12 @@ void showWarning( String title, String message, IconData icon, Color color,[Func
           children: [
             Container(
               width: 700,
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
-                color: Color.fromARGB(51, 168, 168, 168),
+                color: const Color.fromARGB(51, 168, 168, 168),
                 borderRadius: BorderRadius.circular(20),
                 border: Border.all(
-                              color: Color.fromARGB(124, 255, 47, 47),
+                              color: const Color.fromARGB(124, 255, 47, 47),
                               width: 2,
                             ),
               ),
@@ -295,21 +288,21 @@ void showWarning( String title, String message, IconData icon, Color color,[Func
                     color: color,
                     size: 50,
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Text(
                     title,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 22,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Text(
                     message,
-                    style: TextStyle(fontSize: 16),
+                    style: const TextStyle(fontSize: 16),
                     textAlign: TextAlign.center,
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
@@ -317,14 +310,14 @@ void showWarning( String title, String message, IconData icon, Color color,[Func
                         onPressed: () {
                           Navigator.of(context).pop();
                         },
-                        child: Text('Cancel'),
+                        child: const Text('Cancel'),
                       ),
                       TextButton(
                         onPressed: () {
                           Navigator.of(context).pop();
                           redirect;
                         },
-                        child: Text('OK'),
+                        child: const Text('OK'),
                       ),
                     ],
                   ),
@@ -340,7 +333,7 @@ void showWarning( String title, String message, IconData icon, Color color,[Func
 
 Future<void> fetchUserData() async {
   print(globalip);
-  final response = await http.get(Uri.parse('http://${globalip}/fetchuserdata.php?userId=${widget.userId}'));
+  final response = await http.get(Uri.parse('http://$globalip/fetchuserdata.php?userId=${widget.userId}'));
   if (response.statusCode == 200) {
     final data = json.decode(response.body);
     setState(() {
@@ -359,10 +352,11 @@ Future<void> _selectDate(BuildContext context) async {
     firstDate: DateTime(2000),
     lastDate: DateTime.now(),
   );
-  if (pickedDate != null && pickedDate != _incidentDate)
+  if (pickedDate != null && pickedDate != _incidentDate) {
     setState(() {
       _incidentDate = pickedDate;
     });
+  }
 }
 
 Future<void> _selectTime(BuildContext context) async {
@@ -370,10 +364,11 @@ Future<void> _selectTime(BuildContext context) async {
       context: context,
       initialTime: TimeOfDay.now(),
     );
-    if (pickedTime != null && pickedTime != _incidentTime)
+    if (pickedTime != null && pickedTime != _incidentTime) {
       setState(() {
         _incidentTime = pickedTime;
       });
+    }
   }
 
 
@@ -385,7 +380,7 @@ Future<void> _pickImage() async {
 }
 Future<void> saveComplaint(String cat) async {
   print("heere");
-  final url = Uri.parse('http://${globalip}/newcomplaint.php');
+  final url = Uri.parse('http://$globalip/newcomplaint.php');
    List<int> imageBytes = await _image!.readAsBytes();
      String base64Image = base64Encode(imageBytes);
  String formattedDate = _incidentDate != null ? DateFormat('yyyy-MM-dd').format(_incidentDate!) : '';
@@ -417,9 +412,46 @@ Future<void> saveComplaint(String cat) async {
   final responseData = json.decode(response.body);
   if (responseData['success'] == true) {
     showWarning('SUCCESS','Your complaint has been posted',Icons.check_circle_outline_outlined, Colors.green, resetState);
+    print(_email);
+    sendEmail(_email, 'SUBJECT',);
     resetState();
   } else {
     // Error saving data
+  }
+}
+Future<void> sendEmail(String recipientEmail, String subject) async {
+  final serviceId = 'service_lc3w83r'; // Replace with your EmailJS service ID
+  final templateId = 'template_ifw6n0g'; // Replace with your EmailJS template ID
+  final userId = 'yxG99MEPjtK-a6RPR'; // Replace with your EmailJS user ID (or public key)
+
+  final url = Uri.parse('https://api.emailjs.com/api/v1.0/email/send');
+
+  final emailData = {
+    'service_id': serviceId,
+    'template_id': templateId,
+    'user_id': userId,
+    'template_params': {
+      'recipient_email': recipientEmail,
+      'subject': subject,
+    },
+  };
+
+  try {
+    final response = await http.post(
+      url,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: jsonEncode(emailData),
+    );
+
+    if (response.statusCode == 200) {
+      print('Email sent successfully!');
+    } else {
+      print('Failed to send email: ${response.body}');
+    }
+  } catch (e) {
+    print('Error sending email: $e');
   }
 }
 
@@ -431,7 +463,7 @@ Future<void> saveComplaint(String cat) async {
           // Background with transparency
           Positioned.fill(
             child: Container(
-              color: Color.fromARGB(255, 255, 94, 94).withOpacity(.7),
+              color: const Color.fromARGB(255, 255, 94, 94).withOpacity(.7),
             ),
           ),
           Positioned(
@@ -440,7 +472,7 @@ Future<void> saveComplaint(String cat) async {
             right: -(MediaQuery.of(context).size.width * 0.5),
             child: ClipOval(
               child: Container(
-                color: Color.fromARGB(104, 205, 205, 205),
+                color: const Color.fromARGB(104, 205, 205, 205),
                 width: MediaQuery.of(context).size.width * 2,
                 height: MediaQuery.of(context).size.height * 1.2,
               ),
@@ -458,8 +490,8 @@ Future<void> saveComplaint(String cat) async {
                 children: [
                   // Header
                   Container(
-                    padding: EdgeInsets.only(left: 20, right: 20, top: 50, bottom: 20),
-                    decoration: BoxDecoration(
+                    padding: const EdgeInsets.only(left: 20, right: 20, top: 50, bottom: 20),
+                    decoration: const BoxDecoration(
                       borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(20),
                         bottomRight: Radius.circular(20),
@@ -471,7 +503,7 @@ Future<void> saveComplaint(String cat) async {
                   ),
                   // Collapsible box
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 100),
+                    padding: const EdgeInsets.symmetric(horizontal: 100),
 
                     width: MediaQuery.of(context).size.width * 3, // Adjust the width as needed
                     child: 
@@ -500,7 +532,7 @@ _buildCollapsibleBox(widget.userId,_complaints),
                   });
                    resetState(); 
                 },
-                          tabs: [
+                          tabs: const [
                             Tab(
                               icon: Icon(Icons.train),
                               text: 'Metro',
@@ -514,7 +546,7 @@ _buildCollapsibleBox(widget.userId,_complaints),
                         Container(
                           height: 500,
                           decoration: BoxDecoration(
-                            gradient: LinearGradient(
+                            gradient: const LinearGradient(
                               colors: [
                                 Color.fromARGB(0, 199, 113, 249),
                                 Color.fromARGB(142, 227, 64, 64)
@@ -523,7 +555,7 @@ _buildCollapsibleBox(widget.userId,_complaints),
                               end: Alignment.bottomLeft,
                             ),
                             borderRadius: BorderRadius.circular(10),
-                            boxShadow: [
+                            boxShadow: const [
                               BoxShadow(
                                 color: Colors.black12,
                                 blurRadius: 10,
@@ -531,7 +563,7 @@ _buildCollapsibleBox(widget.userId,_complaints),
                               ),
                             ],
                             border: Border.all(
-                              color: Color.fromARGB(255, 255, 255, 255),
+                              color: const Color.fromARGB(255, 255, 255, 255),
                               width: 2,
                             ),
                           ),
@@ -547,7 +579,7 @@ Row(
         ),
       ),
     ),
-    VerticalDivider( // Add VerticalDivider here
+    const VerticalDivider( // Add VerticalDivider here
       color: Color.fromARGB(255, 224, 123, 255), // Customize the color of the divider
       thickness: 1.0, // Adjust the thickness of the divider
     ),
@@ -556,16 +588,16 @@ Row(
         padding: const EdgeInsets.all(16.0),
         child: Container(
           decoration: BoxDecoration(
-            gradient: LinearGradient(
+            gradient: const LinearGradient(
               colors: [
-                const Color.fromARGB(255, 166, 33, 243),
+                Color.fromARGB(255, 166, 33, 243),
                 Color.fromARGB(255, 227, 64, 64)
               ],
               begin: Alignment.topRight,
               end: Alignment.bottomLeft,
             ),
             borderRadius: BorderRadius.circular(10),
-            boxShadow: [
+            boxShadow: const [
               BoxShadow(
                 color: Colors.black12,
                 blurRadius: 10,
@@ -573,7 +605,7 @@ Row(
               ),
             ],
             border: Border.all(
-              color: Color.fromARGB(255, 255, 255, 255),
+              color: const Color.fromARGB(255, 255, 255, 255),
               width: 2,
             ),
           ),
@@ -581,8 +613,8 @@ Row(
             borderRadius: BorderRadius.circular(16.0),
             child: Column(
               children: [
-                SizedBox(height: 10,),
-                Text(
+                const SizedBox(height: 10,),
+                const Text(
                   "Grievance Details",
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
@@ -596,19 +628,19 @@ Row(
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text("Select Complaint"),
+                              const Text("Select Complaint"),
                               Expanded(
                                 child: Container(
                                   height: 50,
-                                  margin: EdgeInsets.only(left: 10),
+                                  margin: const EdgeInsets.only(left: 10),
                                   child: DropdownButtonHideUnderline(
                                     child: GFDropdown(
                                       padding: const EdgeInsets.all(5),
                                       borderRadius: BorderRadius.circular(5),
                                       border: const BorderSide(color: Color.fromARGB(255, 255, 255, 255), width: 1),
-                                      dropdownButtonColor: Color.fromARGB(255, 255, 255, 255),
+                                      dropdownButtonColor: const Color.fromARGB(255, 255, 255, 255),
                                       value: _selectedComplaint,
-                                      hint: Text("ComplaintList"),
+                                      hint: const Text("ComplaintList"),
                                       onChanged: (dynamic newValue) {
                                         setState(() {
                                           _selectedComplaint = newValue as String?;
@@ -620,10 +652,10 @@ Row(
                                           child: Container(
                                             width: 500, // Set the width to the maximum the parent can give
                                             color: Colors.white, // Set the background color to white
-                                            padding: EdgeInsets.all(10),
+                                            padding: const EdgeInsets.all(10),
                                             child: Text(
                                               complaint,
-                                              style: TextStyle(color: Colors.black),
+                                              style: const TextStyle(color: Colors.black),
                                               // Set the text color to black
                                             ),
                                           ),
@@ -635,7 +667,7 @@ Row(
                               ),
                             ],
                           ),
-                          SizedBox(height: 10,),
+                          const SizedBox(height: 10,),
                           ClipRRect(
       borderRadius: BorderRadius.circular(16.0),
       child: BackdropFilter(
@@ -645,7 +677,7 @@ Row(
           decoration: BoxDecoration(
             color: Colors.white.withOpacity(0.2), // White color with opacity for semi-transparency
             borderRadius: BorderRadius.circular(16.0),
-            boxShadow: [
+            boxShadow: const [
               BoxShadow(
                 color: Colors.black12, // Light shadow
                 blurRadius: 10, // Blur effect
@@ -666,13 +698,13 @@ Row(
     children: [
       Row(
         children: [
-          Text("Metro Number", style: TextStyle(color: Colors.black), textAlign: TextAlign.left),
-          SizedBox(width: 12,),
-          Container(
+          const Text("Metro Number", style: TextStyle(color: Colors.black), textAlign: TextAlign.left),
+          const SizedBox(width: 12,),
+          SizedBox(
             width: 200,
             child: DropdownButton<String>(
               isExpanded: true,
-              hint: Text('Select Metro Number'),
+              hint: const Text('Select Metro Number'),
               value: _selectedMetroNumber,
               items: datas,
               onChanged: (newValue) {
@@ -684,15 +716,15 @@ Row(
           ),
         ],
       ),
-      SizedBox(height: 16.0),
-      Text("Ticket No", style: TextStyle(color: Colors.black), textAlign: TextAlign.left),
+      const SizedBox(height: 16.0),
+      const Text("Ticket No", style: TextStyle(color: Colors.black), textAlign: TextAlign.left),
       TextFormField(
         onChanged: (value) {
           setState(() {
             _ticketNo = value;
           });
         },
-        decoration: InputDecoration(
+        decoration: const InputDecoration(
           border: OutlineInputBorder(),
           hintText: 'Enter Ticket No',
         ),
@@ -704,8 +736,8 @@ Row(
           return null;
         },
       ),
-      SizedBox(height: 16.0),
-      Text("Incident Date", style: TextStyle(color: Colors.black), textAlign: TextAlign.left),
+      const SizedBox(height: 16.0),
+      const Text("Incident Date", style: TextStyle(color: Colors.black), textAlign: TextAlign.left),
       Row(
         children: [
           Expanded(
@@ -714,7 +746,7 @@ Row(
                 : DateFormat('yyyy-MM-dd').format(_incidentDate!), textAlign: TextAlign.left),
           ),
           IconButton(
-            icon: Icon(Icons.calendar_today),
+            icon: const Icon(Icons.calendar_today),
             onPressed: () => _selectDate(context),
           ),
         ],
@@ -727,26 +759,26 @@ Row(
                 : _incidentTime!.format(context), textAlign: TextAlign.left),
           ),
           IconButton(
-            icon: Icon(Icons.access_time),
+            icon: const Icon(Icons.access_time),
             onPressed: () => _selectTime(context),
           ),
         ],
       ),
-      SizedBox(height: 16.0),
-      Text("Attach Image", style: TextStyle(color: Colors.black), textAlign: TextAlign.left),
+      const SizedBox(height: 16.0),
+      const Text("Attach Image", style: TextStyle(color: Colors.black), textAlign: TextAlign.left),
       Row(
         children: [
           _image == null
-              ? Text('No image selected.', textAlign: TextAlign.left)
+              ? const Text('No image selected.', textAlign: TextAlign.left)
               : Image.network(_image!.path, height: 50),
           IconButton(
-            icon: Icon(Icons.add_a_photo),
+            icon: const Icon(Icons.add_a_photo),
             onPressed: _pickImage,
           ),
         ],
       ),
-      SizedBox(height: 16.0),
-      Text("Grievance Description", style: TextStyle(color: Colors.black), textAlign: TextAlign.left),
+      const SizedBox(height: 16.0),
+      const Text("Grievance Description", style: TextStyle(color: Colors.black), textAlign: TextAlign.left),
       TextFormField(
         maxLines: 4,
         onChanged: (value) {
@@ -754,7 +786,7 @@ Row(
             _grievanceDescription = value;
           });
         },
-        decoration: InputDecoration(
+        decoration: const InputDecoration(
           border: OutlineInputBorder(),
           hintText: 'Enter Grievance Description',
         ),
@@ -766,7 +798,7 @@ Row(
           return null;
         },
       ),
-      SizedBox(height: 16.0),
+      const SizedBox(height: 16.0),
       Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
@@ -819,7 +851,7 @@ Row(
         ),
       ),
     ),
-    VerticalDivider( // Add VerticalDivider here
+    const VerticalDivider( // Add VerticalDivider here
       color: Color.fromARGB(255, 224, 123, 255), // Customize the color of the divider
       thickness: 1.0, // Adjust the thickness of the divider
     ),
@@ -828,16 +860,16 @@ Row(
         padding: const EdgeInsets.all(16.0),
         child: Container(
           decoration: BoxDecoration(
-            gradient: LinearGradient(
+            gradient: const LinearGradient(
               colors: [
-                const Color.fromARGB(255, 166, 33, 243),
+                Color.fromARGB(255, 166, 33, 243),
                 Color.fromARGB(255, 227, 64, 64)
               ],
               begin: Alignment.topRight,
               end: Alignment.bottomLeft,
             ),
             borderRadius: BorderRadius.circular(10),
-            boxShadow: [
+            boxShadow: const [
               BoxShadow(
                 color: Colors.black12,
                 blurRadius: 10,
@@ -845,7 +877,7 @@ Row(
               ),
             ],
             border: Border.all(
-              color: Color.fromARGB(255, 255, 255, 255),
+              color: const Color.fromARGB(255, 255, 255, 255),
               width: 2,
             ),
           ),
@@ -853,8 +885,8 @@ Row(
             borderRadius: BorderRadius.circular(16.0),
             child: Column(
               children: [
-                SizedBox(height: 10,),
-                Text(
+                const SizedBox(height: 10,),
+                const Text(
                   "Grievance Details",
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
@@ -868,19 +900,19 @@ Row(
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text("Select Complaint"),
+                              const Text("Select Complaint"),
                               Expanded(
                                 child: Container(
                                   height: 50,
-                                  margin: EdgeInsets.only(left: 10),
+                                  margin: const EdgeInsets.only(left: 10),
                                   child: DropdownButtonHideUnderline(
                                     child: GFDropdown(
                                       padding: const EdgeInsets.all(5),
                                       borderRadius: BorderRadius.circular(5),
                                       border: const BorderSide(color: Color.fromARGB(255, 255, 255, 255), width: 1),
-                                      dropdownButtonColor: Color.fromARGB(255, 255, 255, 255),
+                                      dropdownButtonColor: const Color.fromARGB(255, 255, 255, 255),
                                       value: _selectedComplaint,
-                                      hint: Text("ComplaintList"),
+                                      hint: const Text("ComplaintList"),
                                       onChanged: (dynamic newValue) {
                                         setState(() {
                                           _selectedComplaint = newValue as String?;
@@ -892,10 +924,10 @@ Row(
                                           child: Container(
                                             width: 500, // Set the width to the maximum the parent can give
                                             color: Colors.white, // Set the background color to white
-                                            padding: EdgeInsets.all(10),
+                                            padding: const EdgeInsets.all(10),
                                             child: Text(
                                               complaint,
-                                              style: TextStyle(color: Colors.black),
+                                              style: const TextStyle(color: Colors.black),
                                               // Set the text color to black
                                             ),
                                           ),
@@ -907,7 +939,7 @@ Row(
                               ),
                             ],
                           ),
-                          SizedBox(height: 10,),
+                          const SizedBox(height: 10,),
                           ClipRRect(
       borderRadius: BorderRadius.circular(16.0),
       child: BackdropFilter(
@@ -917,7 +949,7 @@ Row(
           decoration: BoxDecoration(
             color: Colors.white.withOpacity(0.2), // White color with opacity for semi-transparency
             borderRadius: BorderRadius.circular(16.0),
-            boxShadow: [
+            boxShadow: const [
               BoxShadow(
                 color: Colors.black12, // Light shadow
                 blurRadius: 10, // Blur effect
@@ -938,13 +970,13 @@ Row(
     children: [
       Row(
         children: [
-          Text("Station Number", style: TextStyle(color: Colors.black), textAlign: TextAlign.left),
-          SizedBox(width: 12,),
-          Container(
+          const Text("Station Number", style: TextStyle(color: Colors.black), textAlign: TextAlign.left),
+          const SizedBox(width: 12,),
+          SizedBox(
             width: 200,
             child: DropdownButton<String>(
               isExpanded: true,
-              hint: Text('Select Station Number'),
+              hint: const Text('Select Station Number'),
               value: _selectedStationNumber,
               items: datas,
               onChanged: (newValue) {
@@ -956,15 +988,15 @@ Row(
           ),
         ],
       ),
-      SizedBox(height: 16.0),
-      Text("Ticket No", style: TextStyle(color: Colors.black), textAlign: TextAlign.left),
+      const SizedBox(height: 16.0),
+      const Text("Ticket No", style: TextStyle(color: Colors.black), textAlign: TextAlign.left),
       TextFormField(
         onChanged: (value) {
           setState(() {
             _ticketNo = value;
           });
         },
-        decoration: InputDecoration(
+        decoration: const InputDecoration(
           border: OutlineInputBorder(),
           hintText: 'Enter Ticket No',
         ),
@@ -976,8 +1008,8 @@ Row(
           return null;
         },
       ),
-      SizedBox(height: 16.0),
-      Text("Incident Date", style: TextStyle(color: Colors.black), textAlign: TextAlign.left),
+      const SizedBox(height: 16.0),
+      const Text("Incident Date", style: TextStyle(color: Colors.black), textAlign: TextAlign.left),
       Row(
         children: [
           Expanded(
@@ -986,7 +1018,7 @@ Row(
                 : DateFormat('yyyy-MM-dd').format(_incidentDate!), textAlign: TextAlign.left),
           ),
           IconButton(
-            icon: Icon(Icons.calendar_today),
+            icon: const Icon(Icons.calendar_today),
             onPressed: () => _selectDate(context),
           ),
         ],
@@ -999,26 +1031,26 @@ Row(
                 : _incidentTime!.format(context), textAlign: TextAlign.left),
           ),
           IconButton(
-            icon: Icon(Icons.access_time),
+            icon: const Icon(Icons.access_time),
             onPressed: () => _selectTime(context),
           ),
         ],
       ),
-      SizedBox(height: 16.0),
-      Text("Attach Image", style: TextStyle(color: Colors.black), textAlign: TextAlign.left),
+      const SizedBox(height: 16.0),
+      const Text("Attach Image", style: TextStyle(color: Colors.black), textAlign: TextAlign.left),
       Row(
         children: [
           _image == null
-              ? Text('No image selected.', textAlign: TextAlign.left)
+              ? const Text('No image selected.', textAlign: TextAlign.left)
               : Image.network(_image!.path, height: 50),
           IconButton(
-            icon: Icon(Icons.add_a_photo),
+            icon: const Icon(Icons.add_a_photo),
             onPressed: _pickImage,
           ),
         ],
       ),
-      SizedBox(height: 16.0),
-      Text("Grievance Description", style: TextStyle(color: Colors.black), textAlign: TextAlign.left),
+      const SizedBox(height: 16.0),
+      const Text("Grievance Description", style: TextStyle(color: Colors.black), textAlign: TextAlign.left),
       TextFormField(
         maxLines: 4,
         onChanged: (value) {
@@ -1026,7 +1058,7 @@ Row(
             _grievanceDescription = value;
           });
         },
-        decoration: InputDecoration(
+        decoration: const InputDecoration(
           border: OutlineInputBorder(),
           hintText: 'Enter Grievance Description',
         ),
@@ -1038,7 +1070,7 @@ Row(
           return null;
         },
       ),
-      SizedBox(height: 16.0),
+      const SizedBox(height: 16.0),
       Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
@@ -1097,9 +1129,9 @@ Row(
   }
 
   Widget _buildHeader() {
-    return Row(
+    return const Row(
       children: [
-        const Text(
+        Text(
           'Metro Abet',
           style: TextStyle(
             fontWeight: FontWeight.bold,
@@ -1108,7 +1140,7 @@ Row(
             letterSpacing: 2.0,
           ),
         ),
-        const SizedBox(width: 10),
+        SizedBox(width: 10),
         Icon(
           Icons.train,
           color: Colors.white,
@@ -1124,16 +1156,16 @@ Widget _buildCollapsibleBox(int userId, List<dynamic> complaints) {
         child: Container(
 
           decoration: BoxDecoration(
-            color: Color.fromARGB(255, 255, 255, 255),
+            color: const Color.fromARGB(255, 255, 255, 255),
             border: Border.all(
-              color: Color.fromARGB(255, 255, 255, 255).withOpacity(0.5),
+              color: const Color.fromARGB(255, 255, 255, 255).withOpacity(0.5),
               width: 1.0,
               
             ),
             borderRadius: BorderRadius.circular(8.0),
           ),
           child: ExpansionTile(
-            title: Text(
+            title: const Text(
               "Your complaints",
               style: TextStyle(
                 fontSize: 18,
@@ -1167,36 +1199,37 @@ Widget _buildCollapsibleBox(int userId, List<dynamic> complaints) {
 
 
 
+
   Widget buildPersonalInfoForm() {
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+        const Text(
           "Your personal information",
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         TextField(
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
             icon: Icon(Icons.person),
             labelText: 'Name',
           ),
           controller: TextEditingController(text: _name),
           readOnly: false,
         ),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         TextField(
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
             icon: Icon(Icons.phone),
             labelText: 'Phone',
           ),
           controller: TextEditingController(text: _phone),
           readOnly: false,
         ),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         TextField(
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
             icon: Icon(Icons.email),
             labelText: 'Email',
           ),
@@ -1210,7 +1243,7 @@ Widget _buildCollapsibleBox(int userId, List<dynamic> complaints) {
 }
 
 void main() {
-  runApp(MaterialApp(
+  runApp(const MaterialApp(
     home: DashboardScreen(userId: 1),
   ));
 }

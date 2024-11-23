@@ -8,12 +8,12 @@ class LoginField extends StatelessWidget {
   final TextEditingController? controller;
 
   const LoginField({
-    Key? key,
+    super.key,
     required this.hintText,
     this.obscureText = false,
     this.errorText, // Update errorText parameter
     this.controller,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

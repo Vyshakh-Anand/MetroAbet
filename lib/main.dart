@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_responsive_login_ui/dashboard.dart';
+import 'package:flutter_responsive_login_ui/AdminDashboard.dart';
+import 'dashboard.dart';
 import 'package:flutter_responsive_login_ui/login_screen.dart';
 import 'package:flutter_responsive_login_ui/pallete.dart';
 
@@ -18,7 +19,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: Pallete.backgroundColor,
       ),
-      home: LoginScreen(),
+      //home: LoginScreen(),
+      home: AdminDashboard(userId: 3),
       //home: DashboardScreen(userId: 1),
       
       

@@ -10,7 +10,7 @@ import 'package:flutter_responsive_login_ui/dashboard.dart';
 import 'AuthService.dart';
 
 class LoginScreen extends StatefulWidget {
-  LoginScreen({Key? key}) : super(key: key);
+  const LoginScreen({super.key});
 
   @override
   _LoginScreenState createState() => _LoginScreenState();
@@ -66,9 +66,9 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 186, 27, 27).withOpacity(.7),
+      backgroundColor: const Color.fromARGB(255, 186, 27, 27).withOpacity(.7),
       body: Container(
-        constraints: BoxConstraints.expand(),
+        constraints: const BoxConstraints.expand(),
         child: Stack(
           children: [
             // White background shape
@@ -78,7 +78,7 @@ class _LoginScreenState extends State<LoginScreen> {
               right: -(MediaQuery.of(context).size.width * 0.5),
               child: ClipOval(
                 child: Container(
-                  color: Color.fromARGB(104, 205, 205, 205),
+                  color: const Color.fromARGB(104, 205, 205, 205),
                   width: MediaQuery.of(context).size.width * 2,
                   height: MediaQuery.of(context).size.height * 1.2,
                 ),
@@ -105,10 +105,10 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Column(
                 children: [
                   Container(
-                    padding: EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 20),
+                    padding: const EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 20),
                     decoration: BoxDecoration(
                       color: const Color.fromARGB(255, 186, 27, 27).withOpacity(0),
-                      borderRadius: BorderRadius.only(
+                      borderRadius: const BorderRadius.only(
                         bottomLeft: Radius.circular(20),
                         bottomRight: Radius.circular(20),
                       ),
@@ -117,7 +117,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: _buildHeader(),
                     ),
                   ),
-                  SizedBox(height: 50),
+                  const SizedBox(height: 50),
                 ],
               ),
             ),
@@ -131,16 +131,16 @@ class _LoginScreenState extends State<LoginScreen> {
                     padding: const EdgeInsets.symmetric(horizontal: 40),
                     child: Container(
                       decoration: BoxDecoration(
-                        gradient: LinearGradient(
+                        gradient: const LinearGradient(
                           colors: [
-                            const Color.fromARGB(255, 166, 33, 243),
+                            Color.fromARGB(255, 166, 33, 243),
                             Color.fromARGB(255, 227, 64, 64)
                           ],
                           begin: Alignment.topRight,
                           end: Alignment.bottomLeft,
                         ),
                         borderRadius: BorderRadius.circular(10),
-                        boxShadow: [
+                        boxShadow: const [
                           BoxShadow(
                             color: Colors.black12,
                             blurRadius: 10,
@@ -148,7 +148,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ],
                         border: Border.all(
-                          color: Color.fromARGB(255, 255, 255, 255),
+                          color: const Color.fromARGB(255, 255, 255, 255),
                           width: 2,
                         ),
                       ),
@@ -175,17 +175,17 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                           const SizedBox(height: 20),
                           if (_isLoading)
-                            CircularProgressIndicator(),
+                            const CircularProgressIndicator(),
                           if (_errorMessage != null)
                             Text(
                               _errorMessage!,
-                              style: TextStyle(color: Colors.red),
+                              style: const TextStyle(color: Colors.red),
                             ),
                           GestureDetector(
                             onTap: () {
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => RegistrationScreen()),
+                                MaterialPageRoute(builder: (context) => const RegistrationScreen()),
                               );
                             },
                             child: const Text(
@@ -213,9 +213,9 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget _buildHeader() {
-    return Row(
+    return const Row(
       children: [
-        const Text(
+        Text(
           'Metro Abet',
           style: TextStyle(
             fontWeight: FontWeight.bold,
@@ -224,7 +224,7 @@ class _LoginScreenState extends State<LoginScreen> {
             letterSpacing: 2.0,
           ),
         ),
-        const SizedBox(width: 10),
+        SizedBox(width: 10),
         Icon(
           Icons.train,
           color: Colors.white,

@@ -5,7 +5,7 @@ const double _kTabHeight = 46.0;
 
 class ButtonsTabBar extends StatefulWidget implements PreferredSizeWidget {
   ButtonsTabBar({
-    Key? key,
+    super.key,
     required this.tabs,
     this.controller,
     this.duration = 250,
@@ -28,7 +28,7 @@ class ButtonsTabBar extends StatefulWidget implements PreferredSizeWidget {
     this.height = _kTabHeight,
     this.center = false,
     this.onTap,
-  }) : super(key: key) {
+  }) {
     assert(backgroundColor == null || decoration == null);
     assert(unselectedBackgroundColor == null || unselectedDecoration == null);
   }
@@ -199,7 +199,7 @@ class _ButtonsTabBarState extends State<ButtonsTabBar>
   }
 
   void _updateTabController() {
-    final TabController? newController =
+    final TabController newController =
         widget.controller ?? DefaultTabController.of(context);
     assert(() {
       if (newController == null) {

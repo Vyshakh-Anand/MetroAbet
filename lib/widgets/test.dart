@@ -4,12 +4,12 @@ class CustomStepper extends StatelessWidget {
   final List<String> steps;
   final int currentStep;
 
-  CustomStepper({required this.steps, required this.currentStep});
+  const CustomStepper({super.key, required this.steps, required this.currentStep});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 20.0, bottom: 20.0),
+      margin: const EdgeInsets.only(top: 20.0, bottom: 20.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: List.generate(steps.length, (index) {
@@ -33,7 +33,7 @@ class StepperItem extends StatelessWidget {
   final bool isCompleted;
   final int stepNumber;
 
-  StepperItem({required this.text, this.isActive = false, this.isCompleted = false, required this.stepNumber});
+  const StepperItem({super.key, required this.text, this.isActive = false, this.isCompleted = false, required this.stepNumber});
 
   @override
   Widget build(BuildContext context) {
@@ -49,11 +49,11 @@ class StepperItem extends StatelessWidget {
           child: Center(
             child: Text(
               '$stepNumber',
-              style: TextStyle(color: Colors.white),
+              style: const TextStyle(color: Colors.white),
             ),
           ),
         ),
-        SizedBox(height: 6.0),
+        const SizedBox(height: 6.0),
         Text(
           text,
           style: TextStyle(fontWeight: isActive ? FontWeight.bold : FontWeight.normal),
@@ -66,10 +66,10 @@ class StepperItem extends StatelessWidget {
 void main() {
   runApp(MaterialApp(
     home: Scaffold(
-      appBar: AppBar(title: Text('Stepper Example')),
+      appBar: AppBar(title: const Text('Stepper Example')),
       body: Center(
         child: CustomStepper(
-          steps: ['Step 1', 'Step 2', 'Step 3', 'Step 4'],
+          steps: const ['Step 1', 'Step 2', 'Step 3', 'Step 4'],
           currentStep: 1, // Current step index (0-based)
         ),
       ),

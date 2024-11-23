@@ -8,7 +8,7 @@ class MyExpandableList extends StatelessWidget {
   final int compId;
   final String comptype;
 
-  MyExpandableList({required this.userId, required this.compId, required this.comptype});
+  const MyExpandableList({super.key, required this.userId, required this.compId, required this.comptype});
 
   @override
   Widget build(BuildContext context) {
@@ -16,17 +16,17 @@ class MyExpandableList extends StatelessWidget {
       title:
       Container(
         decoration: BoxDecoration(
-                color: Color.fromARGB(51, 168, 168, 168),
+                color: const Color.fromARGB(51, 168, 168, 168),
                 borderRadius: BorderRadius.circular(20),
                 border: Border.all(
-                              color: Color.fromARGB(124, 255, 47, 47),
+                              color: const Color.fromARGB(124, 255, 47, 47),
                               width: 2,
                             ),
               ),
         child:  Row(
         children: [
           Text('Complaint ID: $compId'),
-          SizedBox(width: 10,),
+          const SizedBox(width: 10,),
           Text('Type: $comptype'),
         ],
       ),
@@ -44,7 +44,7 @@ class StepProgress extends StatefulWidget {
   final int userId;
   final int compId;
 
-  StepProgress({required this.userId, required this.compId});
+  const StepProgress({super.key, required this.userId, required this.compId});
 
   @override
   _StepProgressState createState() => _StepProgressState();
@@ -72,12 +72,12 @@ class _StepProgressState extends State<StepProgress> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding:EdgeInsets.all(10),
+      padding:const EdgeInsets.all(10),
       decoration: BoxDecoration(
-                color: Color.fromARGB(255, 0, 0, 0),
+                color: const Color.fromARGB(255, 0, 0, 0),
                 borderRadius: BorderRadius.circular(20),
                 border: Border.all(
-                              color: Color.fromARGB(124, 255, 47, 47),
+                              color: const Color.fromARGB(124, 255, 47, 47),
                               width: 2,
                             ),
               ),
@@ -91,23 +91,23 @@ class _StepProgressState extends State<StepProgress> {
             date: _date,
             time: _time,
           ),
-        SizedBox(height: 20),
-        Text('Status Progress:'),
-        SizedBox(height: 10),
+        const SizedBox(height: 20),
+        const Text('Status Progress:'),
+        const SizedBox(height: 10),
         Row(
           children: statuses.map((status) {
             bool isActive = statuses.indexOf(status) <= statuses.indexOf(_compStatus);
             return Expanded(
               child: Container(
-                margin: EdgeInsets.symmetric(horizontal: 4.0),
+                margin: const EdgeInsets.symmetric(horizontal: 4.0),
                 child: Column(
                   children: [
                     CircleAvatar(
                       radius: 10.0,
                       backgroundColor: isActive ? Colors.green : Colors.grey,
                     ),
-                    SizedBox(height: 4.0),
-                    Text(status, style: TextStyle(fontSize: 12.0)),
+                    const SizedBox(height: 4.0),
+                    Text(status, style: const TextStyle(fontSize: 12.0)),
                   ],
                 ),
               ),
@@ -153,7 +153,7 @@ class ComplaintDetails extends StatelessWidget {
   final String date;
   final String time;
 
-  ComplaintDetails({
+  const ComplaintDetails({super.key, 
     required this.compType,
     required this.compStatus,
     required this.date,

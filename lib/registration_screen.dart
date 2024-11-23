@@ -7,7 +7,7 @@ import 'dart:convert';
 import 'globalip.dart';
 
 class RegistrationScreen extends StatefulWidget {
-  const RegistrationScreen({Key? key}) : super(key: key);
+  const RegistrationScreen({super.key});
 
   @override
   _RegistrationScreenState createState() => _RegistrationScreenState();
@@ -34,12 +34,12 @@ void showWarning(String title, String message, IconData icon, Color color, [Func
           children: [
             Container(
               width: 700,
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
-                color: Color.fromARGB(51, 168, 168, 168),
+                color: const Color.fromARGB(51, 168, 168, 168),
                 borderRadius: BorderRadius.circular(20),
                 border: Border.all(
-                  color: Color.fromARGB(124, 255, 47, 47),
+                  color: const Color.fromARGB(124, 255, 47, 47),
                   width: 2,
                 ),
               ),
@@ -51,21 +51,21 @@ void showWarning(String title, String message, IconData icon, Color color, [Func
                     color: color,
                     size: 50,
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Text(
                     title,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 22,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Text(
                     message,
-                    style: TextStyle(fontSize: 16),
+                    style: const TextStyle(fontSize: 16),
                     textAlign: TextAlign.center,
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
@@ -73,7 +73,7 @@ void showWarning(String title, String message, IconData icon, Color color, [Func
                         onPressed: () {
                           Navigator.of(context).pop();
                         },
-                        child: Text('Cancel'),
+                        child: const Text('Cancel'),
                       ),
                       TextButton(
                         onPressed: () {
@@ -82,7 +82,7 @@ void showWarning(String title, String message, IconData icon, Color color, [Func
                             redirect();
                           }
                         },
-                        child: Text('OK'),
+                        child: const Text('OK'),
                       ),
                     ],
                   ),
@@ -287,9 +287,9 @@ Future<void> _registerUser(BuildContext context) async {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 186, 27, 27).withOpacity(.7),
+      backgroundColor: const Color.fromARGB(255, 186, 27, 27).withOpacity(.7),
       body: Container(
-        constraints: BoxConstraints.expand(),
+        constraints: const BoxConstraints.expand(),
         child: Stack(
           children: [
             // White background shape
@@ -299,7 +299,7 @@ Future<void> _registerUser(BuildContext context) async {
               right: -(MediaQuery.of(context).size.width * 0.5), // Adjust as needed for the horizontal position
               child: ClipOval(
                 child: Container(
-                  color: Color.fromARGB(104, 205, 205, 205),
+                  color: const Color.fromARGB(104, 205, 205, 205),
                   width: MediaQuery.of(context).size.width * 2, // Double the width to ensure it covers the entire screen
                   height: MediaQuery.of(context).size.height * 1.2, // Extend the height beyond the screen bottom
                 ),
@@ -312,10 +312,10 @@ Future<void> _registerUser(BuildContext context) async {
               child: Column(
                 children: [
                   Container(
-                    padding: EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 20), // Adjust padding as needed
+                    padding: const EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 20), // Adjust padding as needed
                     decoration: BoxDecoration(
                       color: const Color.fromARGB(255, 186, 27, 27).withOpacity(0),
-                      borderRadius: BorderRadius.only(
+                      borderRadius: const BorderRadius.only(
                         bottomLeft: Radius.circular(20), // Adjust the radius to change the curvature
                         bottomRight: Radius.circular(20), // Adjust the radius to change the curvature
                       ),
@@ -324,7 +324,7 @@ Future<void> _registerUser(BuildContext context) async {
                       child: _buildHeader(),
                     ),
                   ),
-                  SizedBox(height: 50),
+                  const SizedBox(height: 50),
                 ],
               ),
             ),
@@ -338,16 +338,16 @@ Future<void> _registerUser(BuildContext context) async {
                     padding: const EdgeInsets.symmetric(horizontal: 40),
                     child: Container(
                       decoration: BoxDecoration(
-                        gradient: LinearGradient(
+                        gradient: const LinearGradient(
                           colors: [
-                            const Color.fromARGB(255, 166, 33, 243),
+                            Color.fromARGB(255, 166, 33, 243),
                             Color.fromARGB(255, 227, 64, 64)
                           ],
                           begin: Alignment.topRight,
                           end: Alignment.bottomLeft,
                         ),
                         borderRadius: BorderRadius.circular(10),
-                        boxShadow: [
+                        boxShadow: const [
                           BoxShadow(
                             color: Colors.black12,
                             blurRadius: 10,
@@ -355,7 +355,7 @@ Future<void> _registerUser(BuildContext context) async {
                           ),
                         ],
                         border: Border.all(
-                          color: Color.fromARGB(255, 255, 255, 255),
+                          color: const Color.fromARGB(255, 255, 255, 255),
                           width: 2,
                         ),
                       ),
@@ -428,9 +428,9 @@ Future<void> _registerUser(BuildContext context) async {
   }
 
 Widget _buildHeader() {
-  return Row(
+  return const Row(
     children: [
-      const Text(
+      Text(
         'Metro Abet',
         style: TextStyle(
           fontWeight: FontWeight.bold,
@@ -439,7 +439,7 @@ Widget _buildHeader() {
           letterSpacing: 2.0,
         ),
       ),
-      const SizedBox(width: 10), // Adjust the width as needed
+      SizedBox(width: 10), // Adjust the width as needed
       Icon(
         Icons.train,
         color: Colors.white, // Adjust the color as needed
