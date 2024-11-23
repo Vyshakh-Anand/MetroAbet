@@ -11,7 +11,7 @@ class DataVisualizationPage extends StatefulWidget {
 
 class _DataVisualizationPageState extends State<DataVisualizationPage> {
   List<ComplaintTypeData> typeData = [];
-  String globalip=globalP;
+  String globalip = globalP;
 
   @override
   void initState() {
@@ -21,18 +21,23 @@ class _DataVisualizationPageState extends State<DataVisualizationPage> {
 
   // Fetch complaint data from backend
   Future<void> _fetchComplaintData() async {
-final response = await http.get(Uri.parse('http://$globalip/fetch_complaints_admin.php'));
-if (response.statusCode == 200) {
-  final List<dynamic> data = json.decode(response.body);
- print('Data after decoding: $data'); // Check if it's coming empty or not
+    final response = await http.get(Uri.parse('http://$globalip/fetch_complaints_admin.php'));
 
-  setState(() {
-    typeData = data.map((e) => ComplaintTypeData(e['com_type'], e['count'])).toList();
-  });
-} else {
-  throw Exception('Failed to load complaint data');
-}
+    if (response.statusCode == 200) {
+      final List<dynamic> data = json.decode(response.body);
+      print('Fetched data: $data');  // Debugging
 
+      setState(() {
+        typeData = data.map((e) {
+          final count = e['count'] ?? 1;  // Ensure count is never zero or negative
+          final type = e['com_type'] ?? 'Unknown';  // Default to 'Unknown' if type is missing
+          print('Parsed data: Type: $type, Count: $count'); // Debugging
+          return ComplaintTypeData(type, count);
+        }).toList();
+      });
+    } else {
+      print('Failed to load data: ${response.body}');
+    }
   }
 
   @override
@@ -53,7 +58,6 @@ if (response.statusCode == 200) {
                     padding: const EdgeInsets.only(bottom: 16.0),
                     child: ComplaintTypePieChart(data: typeData),
                   ),
-                  // Other charts (Bar, Line) can go here
                 ],
               ),
             ),
@@ -68,19 +72,28 @@ class ComplaintTypePieChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (data.isEmpty) {
+      return Center(child: Text('No data available'));
+    }
+
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: PieChart(
         PieChartData(
+          sectionsSpace: 0,  // Adjust spacing
+          centerSpaceRadius: 40,  // Adjust center space radius
           sections: data
-              .map((data) => PieChartSectionData(
-                    value: data.count.toDouble(),
-                    color: data.type == 'metro' ? Colors.blue : Colors.green,
-                    title: '${data.type}: ${data.count}',
-                  ))
+              .map((data) {
+                final sanitizedCount = data.count > 0 ? data.count.toDouble() : 1.0;
+                print('Adding section: ${data.type}, Value: $sanitizedCount');
+                return PieChartSectionData(
+                  value: sanitizedCount,
+                  color: data.type == 'metro' ? Colors.blue : Colors.green,
+                  title: '${data.type}: ${data.count}',
+                );
+              })
               .toList(),
-        
-        ),    
+        ),
       ),
     );
   }
@@ -93,6 +106,5 @@ class ComplaintTypeData {
   ComplaintTypeData(this.type, this.count);
 
   @override
-  String toString() => 'Type: $type, Count: $count'; // Added for easier debugging
+  String toString() => 'Type: $type, Count: $count'; // Added for debugging
 }
-
