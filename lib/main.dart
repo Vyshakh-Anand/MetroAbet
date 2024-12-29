@@ -19,9 +19,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: Pallete.backgroundColor,
       ),
-      //home: LoginScreen(),
-      home: AdminDashboard(userId: 3),
-      //home: DashboardScreen(userId: 1),
+      home: LoginScreen(),
+      //home: AdminDashboard(userId: 3),
+      //rhome: DashboardScreen(userId: 1),
       
       
       //home: LoginScreen(),
